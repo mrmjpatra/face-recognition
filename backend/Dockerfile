@@ -4,8 +4,9 @@ FROM python:3.12-slim
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install system dependencies for OpenCV, TensorFlow, and Gunicorn
-RUN apt-get update && apt-get install -y \
+# Install system dependencies for OpenCV, TensorFlow, Gunicorn, and OpenCV dependencies
+RUN apt-get update \
+    && apt-get install -y \
     build-essential \
     cmake \
     libopenblas-dev \
@@ -15,7 +16,8 @@ RUN apt-get update && apt-get install -y \
     libsm6 \
     libxrender1 \
     libxext6 \
-    && rm -rf /var/lib/apt/lists/*
+    libgl1-mesa-glx && \
+    rm -rf /var/lib/apt/lists/*  # Clean up the apt cache to reduce image size
 
 # Upgrade pip to the latest version
 RUN pip install --upgrade pip
