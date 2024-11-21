@@ -1,0 +1,4 @@
+.DS_Store
+backend/.vscode/launch.json
+backend/__pycache__/*
+frontend/node_modules/*
